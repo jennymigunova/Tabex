@@ -53,8 +53,8 @@ const Events: FC<Props> = ({ events, completeEvent }) => {
     return Object.entries(groups);
   }, [events]);
 
-  const [tab, setTab] = useState(
-    tabs.findIndex((tab) => {
+  const defaultTag = useMemo(() => {
+    const index = tabs.findIndex((tab) => {
       const currentDate = set(new Date(Date.now()), {
         hours: 0,
         minutes: 0,
@@ -62,8 +62,12 @@ const Events: FC<Props> = ({ events, completeEvent }) => {
         milliseconds: 0,
       });
       return isSameDay(new Date(tab[0]), currentDate);
-    }) || 0
-  );
+    });
+
+    return index < 0 ? 0 : index;
+  }, [tabs]);
+
+  const [tab, setTab] = useState(defaultTag);
 
   return (
     <div className={classes.root}>
