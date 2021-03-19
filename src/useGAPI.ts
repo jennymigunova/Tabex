@@ -19,7 +19,7 @@ function useGAPI() {
   const [user, setUser] = useState({ isSignedIn: false, name: "", avatar: "" });
   const [events, setEvetns] = useState<gapi.client.calendar.Event[]>([]);
 
-  const [showProgress, setShowProgress] = useState(true);
+  const [showProgress, setShowProgress] = useState(false);
 
   useEffect(() => {
     const script = document.createElement("script");
